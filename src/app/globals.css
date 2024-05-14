@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body, html{
+ margin: 0;
+ padding: 0;
+ /* overflow: hidden; */
+}
+
+.cl-card{
+  box-shadow: none !important;
+}
+
+.cl-internal-180wb59{
+  display: none !important;
+}
+
+.cl-formButtonPrimary{
+  background-color: #054058 !important;
+  height: 45px !important;
+}
+
+.cl-formFieldInput{
+  height: 45px !important;
+}
+
+
+::-webkit-scrollbar{
+  width: 0.75rem !important;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: #E5620B !important;
+  border-radius: 10px !important;
+
+}
