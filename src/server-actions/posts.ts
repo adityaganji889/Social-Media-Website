@@ -215,37 +215,16 @@ export const unarchivePost = async (postId: string) => {
   }
 };
 
-// export const searchPosts = async (searchValue: string) => {
-//   try {
-//     const posts = await postModel
-//       .find({
-//         $or: [
-//           { caption: { $regex: searchValue, $options: "i" } },
-//           { hashTags: { $in: [searchValue] } },
-//         ],
-//       })
-//       .populate("user");
-
-//     return {
-//       success: true,
-//       data: JSON.parse(JSON.stringify(posts)),
-//     };
-//   } catch (error: any) {
-//     return {
-//       success: false,
-//       message: error.message,
-//     };
-//   }
-// };
-
 export const searchPosts = async (searchValue: string) => {
   try {
-    const posts = await postModel.find({
-      $or: [
-        { caption: { $regex: searchValue, $options: "i" } },
-        { hashTags: { $in: [searchValue] } },
-      ],
-    }).populate("user");
+    const posts = await postModel
+      .find({
+        $or: [
+          { caption: { $regex: searchValue, $options: "i" } },
+          { hashTags: { $in: [searchValue] } },
+        ],
+      })
+      .populate("user");
 
     return {
       success: true,
@@ -255,6 +234,93 @@ export const searchPosts = async (searchValue: string) => {
     return {
       success: false,
       message: error.message,
+    };
+  }
+};
+
+export const deletePost = async (postId: string) => {
+  try {
+    await postModel.findByIdAndDelete(postId, { new: true });
+
+    return {
+      success: true,
+      message: "Post deleted successfully",
+    };
+  } catch (error: any) {
+    return {
+      success: false,
+      message: error.message,
+    };
+  }
+};
+
+export const updatePost = async ({
+  postId,
+  payload,
+}: {
+  postId: string;
+  payload: any;
+}) => {
+  try {
+    const post = await postModel.findOne({ _id: postId });
+    if(post){
+      post.media = payload.media;
+      post.caption = payload.caption;
+      post.hashTags = payload.hashTags;
+      post.tags = payload.tags;
+      await post.save();
+      return {
+        success: true,
+        message: "Post updated successfully",
+      };
+    }
+    else{
+      return {
+        success: false,
+        message: "Failed to find post and update it",
+      };
+    }
+    // await postModel.findByIdAndUpdate(
+    //   postId,
+    //   {
+    //     media: payload.mediaUrls,
+    //     caption: payload.caption,
+    //     hashTags: payload.hashTags,
+    //     tags: payload.tags,
+    //   },
+    //   { new: true }
+    // );
+
+  } catch (error: any) {
+    return {
+      success: false,
+      message: error.message,
+    };
+  }
+};
+
+
+export const getPostTags = async (postId: string) => {
+  try {
+    const post = await postModel.findOne({ _id: postId }).populate("tags");
+    if (post && post.tags.length !== 0) {
+      return {
+        success: true,
+        message: "Fetched tags of this selected post successfully",
+        data: JSON.parse(JSON.stringify(post.tags)),
+      };
+    } else {
+      return {
+        success: false,
+        message: "Post hasn't received any tags yet.",
+        data: null,
+      };
+    }
+  } catch (error: any) {
+    return {
+      success: false,
+      message: error.message,
+      data: null,
     };
   }
 };

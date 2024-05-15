@@ -26,7 +26,7 @@ function UserRelatedPosts({ user }: { user: UserType }) {
   if (!canViewPosts) {
     return (
       <div className="mt-10">
-        <span className="text-gray-700 text-sm">
+        <span className="text-gray-700 text-sm flex justify-center items-center">
           This account is private. Follow to see their posts.
         </span>
       </div>
@@ -112,9 +112,9 @@ function UserRelatedPosts({ user }: { user: UserType }) {
           {renderPostsOfSelectedTab()}
         </Tabs.TabPane>
 
-        <Tabs.TabPane tab="Saved" key="3">
+        {loggedInUserData?._id === user._id && (<Tabs.TabPane tab="Saved" key="3">
           {renderPostsOfSelectedTab()}
-        </Tabs.TabPane>
+        </Tabs.TabPane>)}
 
         {loggedInUserData?._id === user._id && (
           <Tabs.TabPane tab="Archived" key="4">

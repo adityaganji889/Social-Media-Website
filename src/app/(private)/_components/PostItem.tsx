@@ -9,6 +9,7 @@ import {
   CircleChevronLeft,
   CircleChevronRight,
   Circle,
+  CircleUserRound
 } from "lucide-react";
 import useUsersStore, { UsersStoreType } from "@/store/users";
 import { Button, message } from "antd";
@@ -16,9 +17,11 @@ import { likePost, unlikePost } from "@/server-actions/likes";
 import LikesModal from "./LikesModal";
 import { addNewComment } from "@/server-actions/comments";
 import CommentsModal from "./CommentsModal";
-import { savePost, unsavePost, archivePost, unarchivePost } from "@/server-actions/posts";
+import { savePost, unsavePost, archivePost, unarchivePost, deletePost } from "@/server-actions/posts";
 import { useRouter } from "next/navigation";
 import { addNewNotification } from "@/server-actions/notifications";
+import EditPostModal from "./EditPostModal";
+import TagModal from "./TagModal";
 
 type postType = "feed" | "uploaded" | "tagged" | "saved" | "archived";
 
@@ -48,6 +51,8 @@ function PostItem({
   const [showLikesModal, setShowLikesModal] = useState(false);
   const [showCommentsModal, setShowCommentsModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showPostEditModal, setShowPostEditModal] = useState(false);
+  const [showTaggedModal, setShowTaggedModal] = useState(false);
   const likeHandler = async () => {
     try {
       const response = await likePost({
@@ -187,6 +192,23 @@ function PostItem({
       setLoading(false);
     }
   };
+
+  const deletePostHandler = async () => {
+    try {
+      setLoading(true);
+      const response = await deletePost(post._id);
+      if (response.success) {
+        message.success(response.message);
+        reloadData();
+      } else {
+        message.error(response.message);
+      }
+    } catch (error: any) {
+      message.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="flex flex-col border border-gray-300 border-solid rounded-md">
       <div className="flex gap-5 bg-gray-200 p-3 items-center">
@@ -230,6 +252,14 @@ function PostItem({
               }}
             />
           </div>
+        )}
+        {post.tags.length>0 && (
+           <div className="absolute inset-0 flex items-end justify-between px-2 pb-2">
+           <CircleUserRound onClick={()=>{
+            setShowTaggedModal(true);
+           }}
+           />
+         </div>
         )}
       </div>
       <div className="flex flex-col p-2">
@@ -338,12 +368,14 @@ function PostItem({
                 Unarchive
               </Button>
             )}
-            {/* <Button size="small" type="primary">
+            <Button size="small" type="primary" onClick={()=>{
+              setShowPostEditModal(true);
+            }}>
               Edit
             </Button>
-            <Button size="small">
+            <Button size="small" onClick={deletePostHandler}>
               Delete
-            </Button> */}
+            </Button>
           </div>
         )}
       </div>
@@ -358,6 +390,23 @@ function PostItem({
         <CommentsModal
           showCommentsModal={showCommentsModal}
           setShowCommentsModal={setShowCommentsModal}
+          post={post}
+        />
+      )}
+       {showPostEditModal && (
+            <EditPostModal showPostEditModal={showPostEditModal} setShowPostEditModal={setShowPostEditModal} user={loggedInUserData!} post={post!}/>
+        )}
+      {showLikesModal && (
+        <LikesModal
+          showLikesModal={showLikesModal}
+          setShowLikesModal={setShowLikesModal}
+          post={post}
+        />
+      )}
+      {showTaggedModal && (
+        <TagModal
+          showTaggedModal={showTaggedModal}
+          setShowTaggedModal={setShowTaggedModal}
           post={post}
         />
       )}
