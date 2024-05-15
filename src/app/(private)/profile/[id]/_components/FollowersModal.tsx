@@ -29,21 +29,15 @@ function FollowersModal({
         followRequestReceiverId: userId
        })
        if(response.success){
-         setTimeout(()=>{
             setLoggedInUserData(response.data);
             message.success(response.message);
-         },5000)
        }
        else{
-        setTimeout(()=>{
             message.info(response.message);
-        },5000)
        }
     }
     catch(error:any){
-      setTimeout(()=>{
           message.error(error.message);
-      },5000)
     }
   };
 
@@ -52,22 +46,16 @@ function FollowersModal({
        setLoading(true);
        const response = await getFollowersOfUser(user._id)
        if(response.success){
-         setTimeout(()=>{
             setLoading(false);
             setShowFollowers(response.data);
             message.success(response.message);
-         },5000)
        }
        else{
-        setTimeout(()=>{
             message.info(response.message);
-        },5000)
        }
     }
     catch(error:any){
-      setTimeout(()=>{
           message.error(error.message);
-      },5000)
     }
     finally{
       setLoading(false);

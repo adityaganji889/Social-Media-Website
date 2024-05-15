@@ -38,23 +38,16 @@ function FollowingModal({
         followRequestReceiverId: userId,
       });
       if (response.success) {
-        setTimeout(() => {
-          // setLoggedInUserData(response.data);
           setLoggedInUserData(response.data);
           message.success(response.message);
           setSelectedUserToRemove(null);
-        }, 5000);
       } else {
-        setTimeout(() => {
           message.info(response.message);
           setSelectedUserToRemove(null);
-        }, 5000);
       }
     } catch (error: any) {
-      setTimeout(() => {
         message.error(error.message);
         setSelectedUserToRemove(null);
-      }, 5000);
     }
     finally{
       setUnfollowPrivateAccount(false);
@@ -67,20 +60,14 @@ function FollowingModal({
       setLoading(true);
       const response = await getFollowingsOfUser(user._id);
       if (response.success) {
-        setTimeout(() => {
           setLoading(false);
           setShowFollowing(response.data);
           message.success(response.message);
-        }, 5000);
       } else {
-        setTimeout(() => {
           message.info(response.message);
-        }, 5000);
       }
     } catch (error: any) {
-      setTimeout(() => {
         message.error(error.message);
-      }, 5000);
     } finally {
       setLoading(false);
     }

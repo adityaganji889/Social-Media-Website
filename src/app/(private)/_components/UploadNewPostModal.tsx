@@ -38,19 +38,13 @@ function UploadNewPostModal({
       };
       const response = await createPost(payload);
       if (response.success) {
-        setTimeout(() => {
           message.success(response.message);
           setShowNewPostModal(false);
-        }, 5000);
       } else {
-        setTimeout(() => {
           message.info("Failed to upload post");
-        }, 5000);
       }
     } catch (error: any) {
-      setTimeout(() => {
         message.error(error.message);
-      }, 5000);
     } finally {
       setLoading(false);
     }
@@ -61,7 +55,6 @@ function UploadNewPostModal({
       setLoading(true);
       const response = await getFollowingsOfUser(user._id);
       if (response.success) {
-        setTimeout(() => {
           setLoading(false);
           const tempFollowing = response.data.map((u: any) => ({
             label: u.name,
@@ -69,16 +62,11 @@ function UploadNewPostModal({
           }));
           setFollowing(tempFollowing);
           message.success(response.message);
-        }, 5000);
       } else {
-        setTimeout(() => {
           message.info(response.message);
-        }, 5000);
       }
     } catch (error: any) {
-      setTimeout(() => {
         message.error(error.message);
-      }, 5000);
     } finally {
       setLoading(false);
     }

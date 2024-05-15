@@ -15,8 +15,11 @@ function Sidebar() {
             setShowMobileSidebar(false);
          }}
          placement='left'
+         onClick={()=>{
+          setShowMobileSidebar(false);
+         }}
          >
-           <MenuItems/>
+           <MenuItems />
          </Drawer>
         </div>
         <div className="hidden lg:flex">

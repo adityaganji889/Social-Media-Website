@@ -30,19 +30,13 @@ function PendingFollowRequests({ user }: { user: UserType }) {
         loggedInUserData?._id || ""
       );
       if (response.success) {
-        setTimeout(() => {
           setFollowRequests(response.data);
           message.success(response.message);
-        }, 5000);
       } else {
-        setTimeout(() => {
           message.info(response.message);
-        }, 5000);
       }
     } catch (error: any) {
-      setTimeout(() => {
         message.error(error.message);
-      }, 5000);
     }
   };
 
@@ -54,7 +48,6 @@ function PendingFollowRequests({ user }: { user: UserType }) {
         followRequestReceiverId: loggedInUserData?._id || "",
        })
        if(response.success){
-        setTimeout(()=>{
           addNewNotification({
             user: senderId,
             type: "follow-request",
@@ -65,18 +58,13 @@ function PendingFollowRequests({ user }: { user: UserType }) {
           message.success(response.message);
           setLoggedInUserData(response.data);
           fetchFollowRequests();
-        },5000)
        }
        else{
-        setTimeout(()=>{
           message.info(response.message);
-        },5000)
        }
     }
     catch(error:any){
-        setTimeout(()=>{
           message.error(error.message);
-        },5000)
     }
     finally{
         setLoading('');
@@ -91,22 +79,16 @@ function PendingFollowRequests({ user }: { user: UserType }) {
         followRequestReceiverId: loggedInUserData?._id || "",
        })
        if(response.success){
-        setTimeout(()=>{
           message.success(response.message);
           setLoggedInUserData(response.data);
           fetchFollowRequests();
-        },5000)
        }
        else{
-        setTimeout(()=>{
           message.info(response.message);
-        },5000)
        }
     }
     catch(error:any){
-        setTimeout(()=>{
           message.error(error.message);
-        },5000)
     }
     finally{
         setLoading('');

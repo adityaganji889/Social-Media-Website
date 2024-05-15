@@ -63,7 +63,6 @@ function UserBasicDetails({
         followRequestReceiverId: user._id,
       });
       if (response.success) {
-        setTimeout(() => {
           addNewNotification({
             user: user._id,
             type: "follow-request",
@@ -73,16 +72,11 @@ function UserBasicDetails({
           });
           setLoggedInUserData(response.data);
           message.success(response.message);
-        }, 5000);
       } else {
-        setTimeout(() => {
           message.info(response.message);
-        }, 5000);
       }
     } catch (error: any) {
-      setTimeout(() => {
         message.error(error.message);
-      }, 5000);
     } finally {
       setLoading("");
     }
@@ -126,19 +120,13 @@ function UserBasicDetails({
         followRequestReceiverId: user._id,
       });
       if (response.success) {
-        setTimeout(() => {
           setLoggedInUserData(response.data);
           message.success(response.message);
-        }, 5000);
       } else {
-        setTimeout(() => {
           message.info(response.message);
-        }, 5000);
       }
     } catch (error: any) {
-      setTimeout(() => {
         message.error(error.message);
-      }, 5000);
     } finally {
       setLoading("");
       setUnfollowPrivateAccount(false);
@@ -153,19 +141,13 @@ function UserBasicDetails({
         followRequestReceiverId: user._id,
       });
       if (response.success) {
-        setTimeout(() => {
           setLoggedInUserData(response.data);
           message.success(response.message);
-        }, 5000);
       } else {
-        setTimeout(() => {
           message.info(response.message);
-        }, 5000);
       }
     } catch (error: any) {
-      setTimeout(() => {
         message.error(error.message);
-      }, 5000);
     }
   };
 

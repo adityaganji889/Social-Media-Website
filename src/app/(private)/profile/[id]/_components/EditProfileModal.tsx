@@ -28,20 +28,14 @@ function EditProfileModal({user, showEditProfileModal, setShowEditProfileModal} 
         userId: user._id
        })
        if(response.success){
-        setTimeout(()=>{
            message.success(response.message);
-        },5000)
        }
        else{
-        setTimeout(()=>{
             message.info(response.message);
-         },5000)
        }
     }
     catch(error:any){
-        setTimeout(()=>{
             message.error(error.message);
-         },5000)
     }
     finally{
         setLoading(false);

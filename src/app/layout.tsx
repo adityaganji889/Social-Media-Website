@@ -6,7 +6,6 @@ import ConnectToMongoDB from '../config/ConnectToMongoDB';
 import ThemeProvider from "@/providers/theme-provider";
 import LayoutProvider from "@/providers/layout-provider";
 
-
 // ConnectToMongoDB();
 const inter = Inter({ subsets: ["latin"] });
 
