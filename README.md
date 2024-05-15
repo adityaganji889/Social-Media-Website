@@ -21,13 +21,14 @@ Built a full-stack social network app which is almost similar to Instagram
 ![image](https://github.com/adityaganji889/Social-Media-Website/assets/88584574/6c40fa62-8f51-448c-8eac-eb81768b1c69)
 
 ## Tech Stack Used:
-* Nextjs v14 for frontend and backend
-* MongoDB for database
-* Firebase for Storage
-* Zustand for state management
-* AntDesign for building UI components
-* Tailwindcss for Styling or customizing UI components
-* Clerk for authentication
+#### Front-End:
+<img alt="NextJS" src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"/> <img alt="TailwindCSS" src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white"/> <img src="https://img.shields.io/badge/Ant%20Design-0170FE?logo=antdesign&logoColor=fff&style=for-the-badge" alt="Ant Design Badge"> <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="Typescript"> <img src="https://img.shields.io/badge/zustand-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white" alt="Zustand">  
+
+#### Back-End:
+ <img alt="NextJS" src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"/> <img alt="Mongoose" src ="https://img.shields.io/badge/Mongoose-orange?style=for-the-badge&logo=mongodb&logoColor=white"/> 
+
+#### Databases:
+<img alt="MongoDB" src ="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/> <img alt="Firebase" src ="https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34"/> 
 
 ## Deployed Version:
 
