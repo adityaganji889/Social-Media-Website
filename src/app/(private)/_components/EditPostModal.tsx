@@ -14,11 +14,13 @@ function EditPostModal({
   setShowPostEditModal,
   user,
   post,
+  reloadData = () => {},
 }: {
   showPostEditModal: boolean;
   setShowPostEditModal: (value: boolean) => void;
   user: UserType;
   post: PostType;
+  reloadData?: any;
 }) {
   const [media, setMedia] = useState<any[]>(post.media);
   const [caption, setCaption] = useState(post.caption);
@@ -98,6 +100,7 @@ function EditPostModal({
         if (response.success) {
           message.success(response.message);
           setShowPostEditModal(false);
+          reloadData();
         } else {
           message.info("Failed to Edit post");
         }

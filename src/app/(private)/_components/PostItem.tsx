@@ -394,7 +394,7 @@ function PostItem({
         />
       )}
        {showPostEditModal && (
-            <EditPostModal showPostEditModal={showPostEditModal} setShowPostEditModal={setShowPostEditModal} user={loggedInUserData!} post={post!}/>
+            <EditPostModal showPostEditModal={showPostEditModal} setShowPostEditModal={setShowPostEditModal} user={loggedInUserData!} post={post!}  reloadData = {reloadData}/>
         )}
       {showLikesModal && (
         <LikesModal
